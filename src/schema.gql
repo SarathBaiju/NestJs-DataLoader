@@ -1,0 +1,19 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Blog {
+  id: Int!
+  title: String!
+}
+
+type User {
+  id: Int!
+  name: String!
+  blogs: [Blog!]
+}
+
+type Query {
+  users: [User!]!
+  blogs: [Blog!]!
+}
