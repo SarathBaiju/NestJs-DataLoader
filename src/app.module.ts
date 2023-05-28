@@ -6,6 +6,9 @@ import { BlogModule } from './blog/blog.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
+import { blogLoaderFunction } from './user/loader/user.loader';
+import { UserService } from './user/user.service';
+
 
 @Module({
   imports: [
@@ -14,7 +17,10 @@ import { join } from 'path';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      playground: true
+      playground: true,
+      context: () => ({
+        blogLoader: blogLoaderFunction
+      }),
     })
   ],
   controllers: [AppController],
